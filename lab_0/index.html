@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.3">
+<title>Welcome to Lab 0 | Interactive Data Visualization (Fall 2025)</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="modulepreload" href="../_observablehq/client.40fce3a0.js">
+<link rel="modulepreload" href="../_observablehq/runtime.e080113b.js">
+<link rel="modulepreload" href="../_observablehq/stdlib.eabb1795.js">
+<link rel="icon" href="../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import "../_observablehq/client.40fce3a0.js";
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../">Interactive Data Visualization (Fall 2025)</a></li>
+  </ol>
+  <details open class="observablehq-section-active">
+    <summary>Lab 0: Getting Started</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./readme">Instructions</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./">Dashboard</a></li>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#cities-and-populations-table">Cities and Populations Table</a></li>
+<li class="observablehq-secondary-link"><a href="#filter-cities-by-minimum-population">Filter Cities by Minimum Population</a></li>
+<li class="observablehq-secondary-link"><a href="#los-angeles-panorama">Los Angeles Panorama</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="welcome-to-lab-0" tabindex="-1"><a class="observablehq-header-anchor" href="#welcome-to-lab-0">Welcome to Lab 0</a></h1>
+<h2 id="an-interactive-data-visualization-dashboard-created-by-madison-watkins-for-data-73200-at-the-graduate-center-fall-2025" tabindex="-1"><a class="observablehq-header-anchor" href="#an-interactive-data-visualization-dashboard-created-by-madison-watkins-for-data-73200-at-the-graduate-center-fall-2025">An Interactive Data Visualization dashboard created by Madison Watkins for DATA 73200 at The Graduate Center, FALL 2025</a></h2>
+<h3 id="here-watkins-will-attempt-to-complete-the-lab-0-assignment" tabindex="-1"><a class="observablehq-header-anchor" href="#here-watkins-will-attempt-to-complete-the-lab-0-assignment">Here Watkins will attempt to complete the Lab 0 assignment.</a></h3>
+<pre><code>### Below you will explore a developed dashboard using Markdown, HTML, and JS.
+</code></pre>
+<h2 id="cities-and-populations-table" tabindex="-1"><a class="observablehq-header-anchor" href="#cities-and-populations-table">Cities and Populations Table</a></h2>
+<table id="city-table">
+  <tbody><tr>
+    <th>City</th>
+    <th>Population (millions)</th>
+  </tr>
+  <tr>
+    <td>Brooklyn</td>
+    <td>2.6</td>
+  </tr>
+  <tr>
+    <td>Los Angeles</td>
+    <td>3.8</td>
+  </tr>
+  <tr>
+    <td>Chicago</td>
+    <td>2.7</td>
+  </tr>
+  <tr>
+    <td>Houston</td>
+    <td>2.3</td>
+  </tr>
+</tbody></table>
+<hr>
+<h2 id="filter-cities-by-minimum-population" tabindex="-1"><a class="observablehq-header-anchor" href="#filter-cities-by-minimum-population">Filter Cities by Minimum Population</a></h2>
+<p>Minimum population: <span id="min-pop">0</span> million</p>
+<input type="range" min="0" max="5" step="0.1" value="0" id="pop-slider">
+<ul id="city-list"></ul>
+<hr>
+<h2 id="los-angeles-panorama" tabindex="-1"><a class="observablehq-header-anchor" href="#los-angeles-panorama">Los Angeles Panorama</a></h2>
+<img src="https://la.urbanize.city/sites/default/files/styles/2018_article_image_1140x538/public/LA%20Pano%20West.JPG?itok=PRcSTLiS" alt="Los Angeles panorama" width="600">
+<hr>
+<script>
+// Grab table rows (skip header)
+const rows = document.querySelectorAll("#city-table tr:not(:first-child)");
+const cityList = document.getElementById("city-list");
+const slider = document.getElementById("pop-slider");
+const minPopText = document.getElementById("min-pop");
+
+// Function to update the list based on slider
+function updateList() {
+  const minPop = parseFloat(slider.value);
+  minPopText.textContent = minPop;
+
+  // Clear current list
+  cityList.innerHTML = '';
+
+  // Add cities meeting the minimum population
+  rows.forEach(row => {
+    const city = row.children[0].textContent;
+    const population = parseFloat(row.children[1].textContent);
+    if (population >= minPop) {
+      const li = document.createElement("li");
+      li.textContent = `${city} — ${population} million`;
+      cityList.appendChild(li);
+    }
+  });
+}
+
+// Initialize list
+updateList();
+
+// Update list when slider changes
+slider.addEventListener("input", updateList);
+</script>
+<p>This page is where you can iterate. Follow the lab instructions in the <a href="./README.md">readme.md</a>.</p>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./readme"><span>Instructions</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-10-14T17:27:35">Oct 14, 2025</a>.</div>
+</footer>
+</div>
+</body>
+</html>
