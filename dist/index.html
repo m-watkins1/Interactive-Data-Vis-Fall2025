@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.3">
+<title>Lab 0: Getting Started | Interactive Data Visualization (Fall 2025)</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="preload" as="style" href="./_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="modulepreload" href="./_observablehq/client.14e7fa4a.js">
+<link rel="modulepreload" href="./_observablehq/runtime.e080113b.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.eabb1795.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/inputs.5ca2ce9b.js">
+<link rel="modulepreload" href="./_npm/htl@0.3.1/72f4716c.js">
+<link rel="modulepreload" href="./_npm/isoformat@0.2.1/18cbf477.js">
+<link rel="icon" href="./_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import {define} from "./_observablehq/client.14e7fa4a.js";
+
+define({id: "fafa5295", inputs: ["view","Inputs"], outputs: ["name"], body: (view,Inputs) => {
+const name = view(
+  Inputs.text({
+    label: "Restaurant Name",
+    placeholder: " ",
+    value: " ...."
+  })
+);
+
+name
+
+return {name};
+}});
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link observablehq-link-active"><a href="./">Interactive Data Visualization (Fall 2025)</a></li>
+  </ol>
+  <details>
+    <summary>Lab 0: Getting Started</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./lab_0/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="./lab_0/">Dashboard</a></li>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#favorite-restaurant-text-input">Favorite Restaurant | Text Input</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="welcome-to-lab-0-getting-started-for-a-second-time" tabindex="-1"><a class="observablehq-header-anchor" href="#welcome-to-lab-0-getting-started-for-a-second-time">Welcome to Lab 0: Getting Started for A Second Time !</a></h1>
+<h2 id="introduction" tabindex="-1"><a class="observablehq-header-anchor" href="#introduction">Introduction</a></h2>
+<p>This dashboard introduced me to the basic structure of an Observable Framework project.<br>
+You’ll see examples of Markdown, HTML, and JavaScript all working together.</p>
+<hr>
+<h3 id="overview" tabindex="-1"><a class="observablehq-header-anchor" href="#overview">Overview</a></h3>
+<p>Below is an example of an HTML table and list .</p>
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>SECOND</td>
+      <td>This is one sentence.</td>
+    </tr>
+    <tr>
+      <td>THIRD</td>
+      <td>This is a sentence about something else.</td>
+    </tr>
+    <tr>
+      <td>FOURTH</td>
+      <td>And then another one.</td>
+    </tr>
+  </tbody>
+</table>
+<hr>
+<h3 id="example-list" tabindex="-1"><a class="observablehq-header-anchor" href="#example-list">Example List</a></h3>
+<ul>
+  <li>First item</li>
+  <li>Second item</li>
+  <li>Third item</li>
+</ul>
+<hr>
+<h3 id="example-image" tabindex="-1"><a class="observablehq-header-anchor" href="#example-image">Example Image</a></h3>
+<img src="https://static.spotapps.co/spots/52/1ef0dac8544455b64a5638ad44218e/full">
+<hr>
+<h1 id="favorite-restaurant-text-input" tabindex="-1"><a class="observablehq-header-anchor" href="#favorite-restaurant-text-input">Favorite Restaurant | Text Input</a></h1>
+<p>Type the name of your favorite restaurant below 🍽️</p>
+<div class="observablehq observablehq--block"><!--:fafa5295:--></div>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="next" href="./lab_0/readme"><span>Instructions</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-10-17T15:18:16">Oct 17, 2025</a>.</div>
+</footer>
+</div>
+</body>
+</html>
