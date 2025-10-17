@@ -53,27 +53,17 @@ Below is an example of an HTML table and list .
 
 ---
 
-## Interactive Example: Change the Circle’s Color 🎨
+# Favorite Restaurant | Text Input
 
-Here’s a live example using an **input color picker**.  
-Choose a color below — the circle will update instantly.
+Type the name of your favorite restaurant below 🍽️
 
 ```js
-import { Inputs } from "@observablehq/stdlib"
+const name = view(
+  Inputs.text({
+    label: "Restaurant Name",
+    placeholder: " ",
+    value: " ...."
+  })
+);
 
-// Color input element
-viewof color = Inputs.color({
-  label: "Pick a color:",
-  value: "#0077ff"
-})
-
-// Element that changes color
-html`<div style="
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  margin-top: 10px;
-  background: ${color};
-  border: 2px solid #222;
-  box-shadow: 0 0 10px ${color};
-"></div>`
+name
