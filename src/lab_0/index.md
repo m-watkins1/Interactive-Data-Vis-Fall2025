@@ -1,9 +1,4 @@
----
-title: "Lab 0: Getting Started"
-toc: true
----
-
-# Welcome to Lab 0: Getting Started for A Second Time !
+# Welcome to Lab 0: Getting Started for A Second, Third, Fourth, Fifth Time !
 
 ## Introduction
 This dashboard introduced me to the basic structure of an Observable Framework project.  
@@ -11,7 +6,7 @@ You’ll see examples of Markdown, HTML, and JavaScript all working together.
 
 ---
 
-### Overview
+# Overview
 Below is an example of an HTML table and list .
 
 <table>
@@ -39,7 +34,7 @@ Below is an example of an HTML table and list .
 
 ---
 
-### Example List
+# Example List
 <ul>
   <li>First item</li>
   <li>Second item</li>
@@ -48,7 +43,7 @@ Below is an example of an HTML table and list .
 
 ---
 
-### Example Image
+# Example Image
 <img src="https://static.spotapps.co/spots/52/1ef0dac8544455b64a5638ad44218e/full"  />
 
 ---
