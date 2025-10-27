@@ -1,3 +1,4 @@
+<!--
 ---
 title: "Lab 1: Passing Pollinators"
 toc: true
@@ -46,7 +47,7 @@ Plot.plot({
         // Plot.line(goog, { x: })
     ]
 })
-```
+``` -->
 
 ## LAB 1: Pollinators
 
@@ -141,3 +142,17 @@ Plot.plot({
   ]
 })
 ```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lab 1 Dashboard</title>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.10/dist/plot.umd.min.js"></script>
+</head>
+<body>
+  <div id="dashboard"></div>
+  <script type="module">
+    // Your Plot.plot code here
+  </script>
+</body>
+</html>
