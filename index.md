@@ -1,19 +1,16 @@
----
-title: "Lab 0: Getting Started"
-toc: true
----
 
-# Welcome to Lab 0: Getting Started for A Second Time !
+# Welcome to Lab 0: 
+## An Interactive Data Visualization dashboard created by Madison Watkins for DATA 73200 at The Graduate Center, FALL 2025
 
-## Introduction
+Here Watkins will attempt to complete the Lab 0 assignment. Below you will explore a developed dashboard using Markdown, HTML, and JS.
+
+# Introduction
 This dashboard introduced me to the basic structure of an Observable Framework project.  
 You’ll see examples of Markdown, HTML, and JavaScript all working together.
 
 ---
 
-### Overview
-Below is an example of an HTML table and list .
-
+# Ex. Table
 <table>
   <thead>
     <tr>
@@ -39,16 +36,16 @@ Below is an example of an HTML table and list .
 
 ---
 
-### Example List
+# TOP Restaurants | Ex. List
 <ul>
-  <li>First item</li>
-  <li>Second item</li>
-  <li>Third item</li>
+  <li>Seaweed Handroll Bar</li>
+  <li>Takos Al Pastor</li>
+  <li>Maggiorata</li>
 </ul>
 
 ---
 
-### Example Image
+# FAVORITE MEAL | Ex. Image
 <img src="https://static.spotapps.co/spots/52/1ef0dac8544455b64a5638ad44218e/full"  />
 
 ---
@@ -62,9 +59,13 @@ const name = view(
   Inputs.text({
     label: "Restaurant Name",
     placeholder: " ",
-    value: " ...."
+    value: "Anonymous"
   })
 );
 
 name
 
+---
+title: "Lab 0: Getting Started"
+toc: true
+---
