@@ -139,7 +139,7 @@ Plot.plot({
         {
           x: "nectar_production",
           y: "flower_species",
-          fill: "lightgreen"
+          fill: "orange"
         }
       )
     )
