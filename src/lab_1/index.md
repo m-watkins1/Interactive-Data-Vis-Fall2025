@@ -1,44 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Lab 1 Dashboard</title>
-  <script type="module">
-    import * as Plot from "https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm";
-    
-    // You can now use Plot.plot() here
-    fetch("pollinator_activity_data.csv")
-      .then(response => response.text())
-      .then(csvText => {
-        const rows = csvText.split("\n").slice(1).map(line => {
-          const [species, mass, span, flower, nectar, weather, visits] = line.split(",");
-          return {
-            pollinator_species: species,
-            avg_body_mass_g: +mass,
-            avg_wing_span_mm: +span,
-            flower_species: flower,
-            nectar_production: +nectar,
-            weather_condition: weather,
-            visit_count: +visits
-          };
-        });
-
-        const chart = Plot.plot({
-          x: { label: "Average Body Mass (g)" },
-          y: { label: "Average Wing Span (mm)" },
-          marks: [
-            Plot.dot(rows, { x: "avg_body_mass_g", y: "avg_wing_span_mm", fill: "pollinator_species" })
-          ]
-        });
-
-        document.body.appendChild(chart);
-      });
-  </script>
-</head>
-<body>
-</body>
-</html>
-
+---
+title: "Lab 1: Prolific Pollinators"
+toc: true
+---
 <!--
 ---
 title: "Lab 1: Passing Pollinators"
