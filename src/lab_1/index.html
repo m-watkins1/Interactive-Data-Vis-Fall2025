@@ -26,9 +26,13 @@
         };
       });
 
-      // Create a container for plots
+      // Create a container for all plots
       const container = document.createElement("div");
       container.id = "dashboard";
+      container.style.display = "flex";
+      container.style.flexDirection = "column";
+      container.style.gap = "40px"; // space between plots
+      container.style.padding = "20px";
       document.body.appendChild(container);
 
       // Plot 1: Body Mass vs Wing Span
@@ -37,31 +41,26 @@
           title: "Body Mass vs Wing Span by Pollinator Species",
           height: 300,
           width: 500,
-          x: {
-            label: "Average Body Mass (g)"
-          },
-          y: {
-            label: "Average Wing Span (mm)"
-    },
-    marks: [
-      Plot.dot(pollinator, {
-        x: d => d.avg_body_mass_g,   // use accessor function
-        y: d => d.avg_wing_span_mm,  // use accessor function
-        fill: d => d.pollinator_species,
-        r: 5,
-        title: d => `${d.pollinator_species}\nBody Mass: ${d.avg_body_mass_g} g\nWing Span: ${d.avg_wing_span_mm} mm`
-      })
-    ]
-  })
-);
-
-      
+          x: { label: "Average Body Mass (g)" },
+          y: { label: "Average Wing Span (mm)" },
+          marks: [
+            Plot.dot(pollinator, {
+              x: d => d.avg_body_mass_g,
+              y: d => d.avg_wing_span_mm,
+              fill: d => d.pollinator_species,
+              r: 5,
+              title: d => `${d.pollinator_species}\nBody Mass: ${d.avg_body_mass_g} g\nWing Span: ${d.avg_wing_span_mm} mm`
+            })
+          ]
+        })
+      );
 
       // Plot 2: Average Visit Count by Weather Condition
       container.appendChild(
         Plot.plot({
           title: "Average Visit Count by Weather Condition",
-          height: 250,
+          height: 300,
+          width: 500,
           x: { label: "Weather Condition" },
           y: { label: "Average Visit Count" },
           marks: [
@@ -72,7 +71,7 @@
                 {
                   x: "weather_condition",
                   y: "visit_count",
-                  fill: "weather_condition"
+                  fill: "steelblue"
                 }
               )
             )
@@ -80,11 +79,12 @@
         })
       );
 
-      // Plot 3: Average Nectar Production by Flower Species
+      // Plot 3: Average Nectar Production by Flower Species (orange)
       container.appendChild(
         Plot.plot({
           title: "Average Nectar Production by Flower Species",
-          height: 250,
+          height: 300,
+          width: 500,
           x: { label: "Average Nectar Production (μL)" },
           y: { label: "Flower Species" },
           marginLeft: 90,
@@ -96,7 +96,7 @@
                 {
                   x: "nectar_production",
                   y: "flower_species",
-                  fill: "orange"
+                  fill: "orange"  // changed from lightgreen to orange
                 }
               )
             )
