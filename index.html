@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lab 0 Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      line-height: 1.6;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    h1, h2 {
+      color: #2c3e50;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #ecf0f1;
+    }
+
+    hr {
+      border: none;
+      border-top: 2px solid #ccc;
+      margin: 20px 0;
+    }
+
+    ul {
+      list-style-type: disc;
+      margin-left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="dashboard"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    const markdown = `
+# Welcome to Lab 0:
+## An Interactive Data Visualization dashboard created by Madison Watkins for DATA 73200 at The Graduate Center, FALL 2025
+
+Here Watkins will attempt to complete the Lab 0 assignment. Below you will explore a developed dashboard using Markdown, HTML, and JS.
+
+---
+
+# Introduction
+
+This dashboard introduced me to the basic structure of an Observable Framework project. You’ll see examples of Markdown, HTML, and JavaScript all working together.
+
+---
+
+# Ex. Table
+
+Feature | Purpose
+--- | ---
+SECOND | This is one sentence.
+THIRD | This is a sentence about something else.
+FOURTH | And then another one.
+
+---
+
+# TOP Restaurants | Ex. List
+
+- Seaweed Handroll Bar
+- Takos Al Pastor
+- Maggiorata
+`;
+
+    document.getElementById('dashboard').innerHTML = marked.parse(markdown);
+  </script>
+</body>
+</html>
