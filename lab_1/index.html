@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.3">
+<title>Interactive Data Visualization (Fall 2025)</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="preload" as="style" href="../_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="stylesheet" type="text/css" href="../_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="modulepreload" href="../_observablehq/client.80f8b671.js">
+<link rel="modulepreload" href="../_observablehq/runtime.e080113b.js">
+<link rel="modulepreload" href="../_observablehq/stdlib.73a8ec5a.js">
+<link rel="modulepreload" href="../_observablehq/stdlib/inputs.4ef1d259.js">
+<link rel="modulepreload" href="../_npm/@observablehq/plot@0.6.17/d761ef9b.js">
+<link rel="modulepreload" href="../_npm/d3-dsv@3.0.1/9cffc2bd.js">
+<link rel="modulepreload" href="../_npm/htl@0.3.1/72f4716c.js">
+<link rel="modulepreload" href="../_npm/isoformat@0.2.1/18cbf477.js">
+<link rel="modulepreload" href="../_npm/d3@7.9.0/e780feca.js">
+<link rel="modulepreload" href="../_npm/interval-tree-1d@1.0.4/53fe8176.js">
+<link rel="modulepreload" href="../_npm/d3-array@3.2.4/e93ca09f.js">
+<link rel="modulepreload" href="../_npm/d3-axis@3.0.0/0f2de24d.js">
+<link rel="modulepreload" href="../_npm/d3-brush@3.0.0/65eb105b.js">
+<link rel="modulepreload" href="../_npm/d3-chord@3.0.1/7ef8fb2e.js">
+<link rel="modulepreload" href="../_npm/d3-color@3.1.0/aeb57b94.js">
+<link rel="modulepreload" href="../_npm/d3-contour@4.0.2/1d2aed74.js">
+<link rel="modulepreload" href="../_npm/d3-delaunay@6.0.4/5ced1d52.js">
+<link rel="modulepreload" href="../_npm/d3-dispatch@3.0.1/9ba9c7f3.js">
+<link rel="modulepreload" href="../_npm/d3-drag@3.0.0/4202580c.js">
+<link rel="modulepreload" href="../_npm/d3-ease@3.0.1/cdd7e898.js">
+<link rel="modulepreload" href="../_npm/d3-fetch@3.0.1/b4e2ad9a.js">
+<link rel="modulepreload" href="../_npm/d3-force@3.0.0/5e804d15.js">
+<link rel="modulepreload" href="../_npm/d3-format@3.1.0/86074ef6.js">
+<link rel="modulepreload" href="../_npm/d3-geo@3.1.1/40599fb3.js">
+<link rel="modulepreload" href="../_npm/d3-hierarchy@3.1.2/e49e792c.js">
+<link rel="modulepreload" href="../_npm/d3-interpolate@3.0.1/8d1e5425.js">
+<link rel="modulepreload" href="../_npm/d3-path@3.1.0/20d3f133.js">
+<link rel="modulepreload" href="../_npm/d3-polygon@3.0.1/7553081f.js">
+<link rel="modulepreload" href="../_npm/d3-quadtree@3.0.1/0dfd751c.js">
+<link rel="modulepreload" href="../_npm/d3-random@3.0.1/3c90ee06.js">
+<link rel="modulepreload" href="../_npm/d3-scale@4.0.2/843b6a76.js">
+<link rel="modulepreload" href="../_npm/d3-scale-chromatic@3.1.0/ba24c2e7.js">
+<link rel="modulepreload" href="../_npm/d3-selection@3.0.0/4d94e5b7.js">
+<link rel="modulepreload" href="../_npm/d3-shape@3.2.0/6d3a6726.js">
+<link rel="modulepreload" href="../_npm/d3-time@3.1.0/9f03c579.js">
+<link rel="modulepreload" href="../_npm/d3-time-format@4.1.0/07c9626f.js">
+<link rel="modulepreload" href="../_npm/d3-timer@3.0.1/b58a267d.js">
+<link rel="modulepreload" href="../_npm/d3-transition@3.0.1/004da2ac.js">
+<link rel="modulepreload" href="../_npm/d3-zoom@3.0.0/b5786b3f.js">
+<link rel="modulepreload" href="../_npm/binary-search-bounds@2.0.5/cbf6ba23.js">
+<link rel="modulepreload" href="../_npm/internmap@2.0.3/e08981d9.js">
+<link rel="modulepreload" href="../_npm/delaunator@5.0.1/02d43215.js">
+<link rel="modulepreload" href="../_npm/robust-predicates@3.0.2/aa00730b.js">
+<link rel="icon" href="../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import {define} from "../_observablehq/client.80f8b671.js";
+import {registerFile} from "../_observablehq/stdlib.73a8ec5a.js";
+
+registerFile("./data/pollinator_activity_data.csv", {"name":"./data/pollinator_activity_data.csv","mimeType":"text/csv","path":"../_file/lab_1/data/pollinator_activity_data.172590cd.csv","lastModified":1761594368025,"size":29868});
+
+define({id: "73c79baf", inputs: ["FileAttachment"], outputs: ["pollinator"], body: (FileAttachment) => {
+const pollinator = FileAttachment("./data/pollinator_activity_data.csv").csv()
+return {pollinator};
+}});
+
+define({id: "1b817504", inputs: ["Inputs","pollinator","display"], body: async (Inputs,pollinator,display) => {
+display(await(
+Inputs.table(pollinator)
+))
+}});
+
+define({id: "cd12602d", inputs: ["Plot","pollinator","display"], body: async (Plot,pollinator,display) => {
+display(await(
+// #1 What is the body mass and wing span distribution of each pollinator species observed?
+Plot.plot({
+    title: "Body Mass vs Wing Span by Pollinator Species",
+    height: 250,
+    x: { label: "Average Body Mass (g)" },
+    y: { label: "Average Wing Span (mm)" }, 
+     color: { label: "Pollinator Species", legend: true },
+    marks:  [
+        Plot.frame(),
+        Plot.dot(pollinator, {
+            x: "avg_body_mass_g",
+            y: "avg_wing_span_mm",
+            fill: "pollinator_species",
+            r: 5,
+        })
+    ]
+})
+
+))
+}});
+
+define({id: "fea3fbb6", inputs: ["Plot","pollinator","display"], body: async (Plot,pollinator,display) => {
+display(await(
+// #2 What is the ideal weather (conditions, temperature, etc) for pollinating?
+
+Plot.plot({
+    title: "Average Visit Count by Weather Condition",
+    height: 250,
+    x: { label: "Weather Condition" },
+    y: { label: "Average Visit Count" },
+    marks: [
+    Plot.frame(),
+    Plot.barY(
+      pollinator,
+      Plot.groupX(
+        { y: "mean" },
+        {
+          x: "weather_condition",
+          y: "visit_count",
+          fill: "weather_condition"
+        }
+      )
+    )
+  ]
+})
+))
+}});
+
+define({id: "0dbe1e1e", inputs: ["Plot","pollinator","display"], body: async (Plot,pollinator,display) => {
+display(await(
+//#3 Which flower has the most nectar production?
+Plot.plot({
+  title: "Average Nectar Production by Flower Species",
+  height: 250,
+  x: { label: "Average Nectar Production (μL)" },
+  y: { label: "Flower Species" },
+  marginLeft: 90,
+  marks: [
+    Plot.frame(),
+    Plot.barX(
+      pollinator,
+      Plot.groupY(
+        { x: "mean" },
+        {
+          x: "nectar_production",
+          y: "flower_species",
+          fill: "lightgreen"
+        }
+      )
+    )
+  ]
+})
+))
+}});
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../">Interactive Data Visualization (Fall 2025)</a></li>
+  </ol>
+  <details>
+    <summary>Lab 0: Getting Started</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_0/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_0/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details open class="observablehq-section-active">
+    <summary>Lab 1: Prolific Pollinators</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./readme">Instructions</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./">Dashboard</a></li>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#lab-1-pollinators">LAB 1: Pollinators</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+
+
+
+  <meta charset="utf-8">
+  <title>Lab 1 Dashboard</title>
+  <script type="module">
+    import * as Plot from "https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm";
+<pre><code>// You can now use Plot.plot() here
+fetch(&quot;pollinator_activity_data.csv&quot;)
+  .then(response =&gt; response.text())
+  .then(csvText =&gt; {
+    const rows = csvText.split(&quot;\n&quot;).slice(1).map(line =&gt; {
+      const [species, mass, span, flower, nectar, weather, visits] = line.split(&quot;,&quot;);
+      return {
+        pollinator_species: species,
+        avg_body_mass_g: +mass,
+        avg_wing_span_mm: +span,
+        flower_species: flower,
+        nectar_production: +nectar,
+        weather_condition: weather,
+        visit_count: +visits
+      };
+    });
+
+    const chart = Plot.plot({
+      x: { label: &quot;Average Body Mass (g)&quot; },
+      y: { label: &quot;Average Wing Span (mm)&quot; },
+      marks: [
+        Plot.dot(rows, { x: &quot;avg_body_mass_g&quot;, y: &quot;avg_wing_span_mm&quot;, fill: &quot;pollinator_species&quot; })
+      ]
+    });
+
+    document.body.appendChild(chart);
+  });
+</code></pre>
+  </script>
+
+
+
+
+
+<h2 id="lab-1-pollinators" tabindex="-1"><a class="observablehq-header-anchor" href="#lab-1-pollinators">LAB 1: Pollinators</a></h2>
+<div class="observablehq observablehq--block"><!--:73c79baf:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:1b817504:--></div>
+<!--```js
+Plot.plot({
+    height: 200,
+    marks:  [
+        Plot.frame(),
+        Plot.barY(pollinator, {
+            x: "rowid",
+            y: "bill_length_mm"
+        } )
+    ]
+})
+``` -->
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:cd12602d:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:fea3fbb6:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:0dbe1e1e:--></div>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./readme"><span>Instructions</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-10-27T20:58:02">Oct 27, 2025</a>.</div>
+</footer>
+</div>
+</body>
+</html>
