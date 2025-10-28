@@ -1,160 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Lab 1 Dashboard</title>
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.10/dist/plot.umd.min.js"></script>
+  <meta charset="utf-8">
+  <title>Lab 1: Pollinators</title>
+  <script type="module">
+    import * as Plot from "https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm";
+
+    // Fetch CSV data
+    fetch("pollinator_activity_data.csv")
+      .then(response => response.text())
+      .then(csvText => {
+        const rows = csvText.split("\n").slice(1).map(line => {
+          const [pollinator_species, avg_body_mass_g, avg_wing_span_mm, flower_species, nectar_production, weather_condition, visit_count] = line.split(",");
+          return {
+            pollinator_species,
+            avg_body_mass_g: +avg_body_mass_g,
+            avg_wing_span_mm: +avg_wing_span_mm,
+            flower_species,
+            nectar_production: +nectar_production,
+            weather_condition,
+            visit_count: +visit_count
+          };
+        });
+
+        // Plot 1: Body Mass vs Wing Span
+        const plot1 = Plot.plot({
+          title: "Body Mass vs Wing Span by Pollinator Species",
+          x: { label: "Average Body Mass (g)" },
+          y: { label: "Average Wing Span (mm)" },
+          color: { legend: true },
+          marks: [
+            Plot.dot(rows, { x: "avg_body_mass_g", y: "avg_wing_span_mm", fill: "pollinator_species" })
+          ]
+        });
+        document.body.appendChild(plot1);
+
+        // Plot 2: Average Visit Count by Weather
+        const plot2 = Plot.plot({
+          title: "Average Visit Count by Weather Condition",
+          x: { label: "Weather Condition" },
+          y: { label: "Average Visit Count" },
+          marks: [
+            Plot.barY(
+              rows,
+              Plot.groupX({ y: "mean" }, { x: "weather_condition", y: "visit_count", fill: "weather_condition" })
+            )
+          ]
+        });
+        document.body.appendChild(plot2);
+
+        // Plot 3: Average Nectar Production by Flower Species
+        const plot3 = Plot.plot({
+          title: "Average Nectar Production by Flower Species",
+          x: { label: "Average Nectar Production (μL)" },
+          y: { label: "Flower Species" },
+          marginLeft: 90,
+          marks: [
+            Plot.barX(
+              rows,
+              Plot.groupY({ x: "mean" }, { x: "nectar_production", y: "flower_species", fill: "lightgreen" })
+            )
+          ]
+        });
+        document.body.appendChild(plot3);
+
+      });
+  </script>
 </head>
 <body>
-  <div id="dashboard"></div>
-  <script type="module">
-    // Your Plot.plot code here
-  </script>
 </body>
 </html>
-
-
-<!--
----
-title: "Lab 1: Passing Pollinators"
-toc: true
----
-
-This page is where you can iterate. Follow the lab instructions in the [readme.md](./README.md).
-
-```js
-const text = view(Inputs.text())
-```
-This is the value of text: ${text}
-
-```js
-Plot.plot({
-    width: 300,
-    height: 200,
-    marks: [
-        Plot.frame(),
-        Plot.text(["text"], {framanchor: "middle", rotate: 90})
-    ]
-})
-```
-```js
-// view(aapl)
-Inputs.table(aapl)
-```
-
-```js
-Plot.plot({
-    height: 200,
-    y: {
-        grid: true
-    },
-    marks: [
-        Plot.frame(),
-        Plot.line(aapl, { 
-            x: "Date", 
-            y: d => d["Close"] + 100, 
-            stroke:"pink", 
-            strokeWidth:20
-         }),
-        Plot.dot(aapl,{ x: "Date", y: "Close", fill: "white", r: 1, tip: true} ),
-        Plot.ruleY([0,50,100]),
-        // Plot.ruleY([100])
-        // Plot.ruleX(new Date("2015-01-01"))
-        // Plot.line(goog, { x: })
-    ]
-})
-``` -->
-
-## LAB 1: Pollinators
-
-```js
-const pollinator = FileAttachment("./data/pollinator_activity_data.csv").csv()
-```
-
-```js
-Inputs.table(pollinator)
-```
-
-<!--```js
-Plot.plot({
-    height: 200,
-    marks:  [
-        Plot.frame(),
-        Plot.barY(pollinator, {
-            x: "rowid",
-            y: "bill_length_mm"
-        } )
-    ]
-})
-``` -->
-
-```js
-// #1 What is the body mass and wing span distribution of each pollinator species observed?
-Plot.plot({
-    title: "Body Mass vs Wing Span by Pollinator Species",
-    height: 250,
-    x: { label: "Average Body Mass (g)" },
-    y: { label: "Average Wing Span (mm)" }, 
-     color: { label: "Pollinator Species", legend: true },
-    marks:  [
-        Plot.frame(),
-        Plot.dot(pollinator, {
-            x: "avg_body_mass_g",
-            y: "avg_wing_span_mm",
-            fill: "pollinator_species",
-            r: 5,
-        })
-    ]
-})
-
-```
-
-```js
-// #2 What is the ideal weather (conditions, temperature, etc) for pollinating?
-
-Plot.plot({
-    title: "Average Visit Count by Weather Condition",
-    height: 250,
-    x: { label: "Weather Condition" },
-    y: { label: "Average Visit Count" },
-    marks: [
-    Plot.frame(),
-    Plot.barY(
-      pollinator,
-      Plot.groupX(
-        { y: "mean" },
-        {
-          x: "weather_condition",
-          y: "visit_count",
-          fill: "weather_condition"
-        }
-      )
-    )
-  ]
-})
-```
-
-```js
-//#3 Which flower has the most nectar production?
-Plot.plot({
-  title: "Average Nectar Production by Flower Species",
-  height: 250,
-  x: { label: "Average Nectar Production (μL)" },
-  y: { label: "Flower Species" },
-  marginLeft: 90,
-  marks: [
-    Plot.frame(),
-    Plot.barX(
-      pollinator,
-      Plot.groupY(
-        { x: "mean" },
-        {
-          x: "nectar_production",
-          y: "flower_species",
-          fill: "lightgreen"
-        }
-      )
-    )
-  ]
-})
-```
