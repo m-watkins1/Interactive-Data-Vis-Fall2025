@@ -6,31 +6,109 @@
   <script type="module">
     import * as Plot from "https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm";
 
-    // Load CSV
-    const pollinator = await (await fetch("./data/pollinator_activity_data.csv")).text();
-    const rows = pollinator.split("\n").slice(1).map(r => {
-      const [rowid, pollinator_species, avg_body_mass_g, avg_wing_span_mm, weather_condition, visit_count, flower_species, nectar_production] = r.split(",");
-      return { rowid, pollinator_species, avg_body_mass_g: +avg_body_mass_g, avg_wing_span_mm: +avg_wing_span_mm, weather_condition, visit_count: +visit_count, flower_species, nectar_production: +nectar_production };
-    });
+    async function loadDashboard() {
+      // Load CSV data
+      const csvText = await (await fetch("./data/pollinator_activity_data.csv")).text();
+      const pollinator = csvText.split("\n").slice(1).map(row => {
+        const [
+          rowid, pollinator_species, avg_body_mass_g, avg_wing_span_mm, 
+          weather_condition, visit_count, flower_species, nectar_production
+        ] = row.split(",");
+        return {
+          rowid,
+          pollinator_species,
+          avg_body_mass_g: +avg_body_mass_g,
+          avg_wing_span_mm: +avg_wing_span_mm,
+          weather_condition,
+          visit_count: +visit_count,
+          flower_species,
+          nectar_production: +nectar_production
+        };
+      });
 
-    // Example Plot
-    document.body.appendChild(
-      Plot.plot({
-        title: "Body Mass vs Wing Span by Pollinator Species",
-        height: 250,
-        x: { label: "Average Body Mass (g)" },
-        y: { label: "Average Wing Span (mm)" },
-        marks: [
-          Plot.dot(rows, {
-            x: "avg_body_mass_g",
-            y: "avg_wing_span_mm",
-            fill: "pollinator_species",
-            r: 5
-          })
-        ]
+      // Create a container for plots
+      const container = document.createElement("div");
+      container.id = "dashboard";
+      document.body.appendChild(container);
+
+      // Plot 1: Body Mass vs Wing Span
+      container.appendChild(
+        Plot.plot({
+          title: "Body Mass vs Wing Span by Pollinator Species",
+          height: 300,
+          width: 500,
+          x: {
+            label: "Average Body Mass (g)"
+          },
+          y: {
+            label: "Average Wing Span (mm)"
+    },
+    marks: [
+      Plot.dot(pollinator, {
+        x: d => d.avg_body_mass_g,   // use accessor function
+        y: d => d.avg_wing_span_mm,  // use accessor function
+        fill: d => d.pollinator_species,
+        r: 5,
+        title: d => `${d.pollinator_species}\nBody Mass: ${d.avg_body_mass_g} g\nWing Span: ${d.avg_wing_span_mm} mm`
       })
-    );
+    ]
+  })
+);
+
+      
+
+      // Plot 2: Average Visit Count by Weather Condition
+      container.appendChild(
+        Plot.plot({
+          title: "Average Visit Count by Weather Condition",
+          height: 250,
+          x: { label: "Weather Condition" },
+          y: { label: "Average Visit Count" },
+          marks: [
+            Plot.barY(
+              pollinator,
+              Plot.groupX(
+                { y: "mean" },
+                {
+                  x: "weather_condition",
+                  y: "visit_count",
+                  fill: "weather_condition"
+                }
+              )
+            )
+          ]
+        })
+      );
+
+      // Plot 3: Average Nectar Production by Flower Species
+      container.appendChild(
+        Plot.plot({
+          title: "Average Nectar Production by Flower Species",
+          height: 250,
+          x: { label: "Average Nectar Production (μL)" },
+          y: { label: "Flower Species" },
+          marginLeft: 90,
+          marks: [
+            Plot.barX(
+              pollinator,
+              Plot.groupY(
+                { x: "mean" },
+                {
+                  x: "nectar_production",
+                  y: "flower_species",
+                  fill: "orange"
+                }
+              )
+            )
+          ]
+        })
+      );
+    }
+
+    // Run the dashboard
+    loadDashboard();
   </script>
 </head>
-<body></body>
+<body>
+</body>
 </html>
