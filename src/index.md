@@ -68,3 +68,9 @@ const name = view(
 
 name
 
+<<<<<<< HEAD
+=======
+- [Lab 0: Getting Started](/lab_0/readme)
+- [Lab 1: Passing Pollinators](/lab_1/readme)
+- [Lab 2: Subway Staffing](/lab_2/readme)
+>>>>>>> 447214f38198935eb3a995c4f7c22271649ac77a
