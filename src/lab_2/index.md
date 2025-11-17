@@ -58,8 +58,7 @@ const currentStaffing = {
 ```
 
 ```js
-## 1. Local Event Impact on Ridership
-
+// QUESTION 1 
 daily = {
   const byDate = d3.group(ridership, d => d.date);
   return Array.from(byDate, ([date, rows]) => ({
@@ -97,8 +96,7 @@ Plot.plot({
   ]
 })
 
-## 2. 
-
+// QUESTION 2
 response_stats = {
   const g = d3.group(incidents, d => d.station);
   return Array.from(g, ([station, rows]) => ({
@@ -135,7 +133,7 @@ response_stats = {
   ]
 })
 
-## 3. 
+// QUESTION 3 
 expected_2026 = {
   const g = d3.rollup(upcoming_events, v => d3.sum(v, d => d.expected_attendance), d => d.nearby_station);
   return Array.from(g, ([station, total]) => ({station, total}));
