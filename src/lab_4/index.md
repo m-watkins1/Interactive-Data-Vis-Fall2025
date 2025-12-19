@@ -149,7 +149,9 @@ ${d.heavy_metals_ppb > 30 ? "⚠️ VIOLATION" : d.heavy_metals_ppb > 20 ? "⚠ 
   West station shows catastrophic heavy metal contamination, consistently exceeding both the concern threshold (20 ppb) and regulatory limit (30 ppb). Peak contamination reached ${maxHeavyMetals.toFixed(0)} ppb—more than <strong>${(maxHeavyMetals/30).toFixed(1)}x the legal limit</strong>. Meanwhile, other stations remain well within safe parameters, indicating a localized point-source pollutant.
 </div>
 
-##  Ecological Devastation | Fish Population Collapse
+---
+
+##  Ecological Devastation | *Fish Population Collapse*
 <div class="chart-title">Fish Population Trends by Species and Station (Quarterly Surveys)</div>
 
 ```js
@@ -209,4 +211,69 @@ Avg Weight: ${d.avg_weight_g}g`
 </div>
 
 ---
+
+## Multi-Pollutant Analysis: *Isolating the Culprit*
+<div class="chart-title">Water Quality Parameters at West Station (The Contamination Epicenter)</div>
+
+```js
+Plot.plot({
+  width: 1100,
+  height: 450,
+  marginLeft: 60,
+  marginRight: 100,
+  style: {
+    background: "rgba(0, 30, 50, 0.5)",
+    color: "#e0f2f7"
+  },
+  x: {
+    label: "Date",
+    grid: true,
+    tickFormat: d3.timeFormat("%b %Y")
+  },
+  y: {
+    label: "Measurement Value",
+    grid: true
+  },
+  color: {
+    domain: ["Heavy Metals (ppb)", "Nitrogen (mg/L × 10)", "Phosphorus (mg/L × 100)"],
+    range: ["#ff4757", "#5ddbff", "#2ed573"],
+    legend: true
+  },
+  marks: [
+    Plot.line(westData, {
+      x: "date",
+      y: "heavy_metals_ppb",
+      stroke: "Heavy Metals (ppb)",
+      strokeWidth: 3
+    }),
+    Plot.line(westData, {
+      x: "date",
+      y: d => d.nitrogen_mg_per_L * 10,
+      stroke: "Nitrogen (mg/L × 10)",
+      strokeWidth: 2,
+      strokeDasharray: "4,4"
+    }),
+    Plot.line(westData, {
+      x: "date",
+      y: d => d.phosphorus_mg_per_L * 100,
+      stroke: "Phosphorus (mg/L × 100)",
+      strokeWidth: 2,
+      strokeDasharray: "2,2"
+    }),
+    Plot.dot(westData, {
+      x: "date",
+      y: "heavy_metals_ppb",
+      fill: "#ff4757",
+      r: 4
+    })
+  ]
+})
+```
+
+<div class="evidence-box">
+  <strong>💡KEY INSIGHTS:</strong> While nitrogen and phosphorus show seasonal fluctuations typical of agricultural runoff (spring and fall fertilizer application), heavy metal contamination follows a completely different pattern—with dramatic spikes independent of agricultural cycles. This chemical signature rules out Riverside Farm and points definitively to an industrial source.
+</div>
+
+---
+
 
