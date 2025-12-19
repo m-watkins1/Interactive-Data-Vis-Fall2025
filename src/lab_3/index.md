@@ -7,11 +7,9 @@ toc: false
 
 <style>
   body {
-    background: linear-gradient(135deg, #1631a89f 0%, #1631a89f 50%, #1631a89f 100%);
+    background: #1631a89f;
+    color: #ffd700;
     font-family: 'Comic Sans MS', cursive, sans-serif;
-    text-align: center;
-    max-width: 1200px;
-    margin: 0 auto;
     padding: 20px;
   }
   
@@ -28,6 +26,7 @@ toc: false
   
   .yearbook-header h1 {
     font-size: 3em;
+    text-align: center;
     margin: 0;
     text-shadow: 3px 3px #000;
     font-weight: bold;
@@ -40,46 +39,39 @@ toc: false
     color: #fff;
   }
 
-  .section-title {
-    background: linear-gradient(90deg, #8b0000, #b22222);
-    color: #ffd700;
-    padding: 20px;
-    font-size: 1.8em;
-    border: 4px solid #ffd700;
-    margin: 30px auto 20px auto;
-    font-weight: bold;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  }
-
-  .analysis-box {
-    background: #fff9e6;
-    border-left: 6px solid #8b0000;
-    padding: 20px;
-    font-style: italic;
-    box-shadow: 3px 3px 10px rgba(0,0,0,0.1);
-    text-align: center;
-    margin: 20px auto;
-  }
-
-  .analysis-box p {
-    margin: 0 auto;
-  }
-
-  .stats-summary {
+  .paragraph {
     background: #8b0000;
     color: #ffd700;
-    padding: 15px;
-    margin: 20px auto;
+    padding: 30px;
     text-align: center;
     border: 3px solid #ffd700;
-    font-weight: bold;
-    font-size: 1.1em;
+    margin: 20px auto;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
   }
+
+  .paragraph-header h1 {
+  font-size: 3em;
+  text-align: center;
+  margin: 0;
+  text-shadow: 3px 3px #000;
+  font-weight: bold;
+  word-wrap: break-word;
+  max-width: 90%;     /* keeps it from stretching edge-to-edge */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+  
+  .paragraph-subheader {
+    font-size: 1.3em;
+    font-style: italic;
+    margin-top: 10px;
+    color: #fff;
+  }
+
 </style>
 
-## <span style="font-family: Times New Roman, serif;">LAB 3: Mayoral Mystery | Most Likely to Succeed Edition</span>
-### <span style="font-family: Times New Roman, serif;">*by Madison Watkins*</span>
+</div>
 
 <div class="yearbook-header">
   <h1>🏆 NYC MAYORAL RACE 2024 🏆</h1>
@@ -89,6 +81,12 @@ toc: false
 </div>
 
 
+<div class="paragraph">
+  <h1>LAB 3: Mayoral Mystery | Most Likely to Succeed Edition</h1>
+  <div class="yearbook-subheader">
+    by Madison Watkins
+  </div>
+</div>
 
 
 <!-- Import Data -->
@@ -133,11 +131,9 @@ const totalDistricts = results.length;
 const overallWinPercentage = ((candidateVotes / totalVotes) * 100).toFixed(1);
 ```
 
-
-<div class="section-title">
-
 ## Election Results by District
 How did the candidate do, overall? How do the results vary by district?
+
 
 ```js
 // Simple rendering of the NYC districts topoJSON
@@ -171,6 +167,8 @@ Turnout: ${d.properties.turnout_rate?.toFixed(1)}%`
 })
 ```
 
+<div style="text-align: center;">
+
 #### *Analysis:* 
 The candidate performed strongly overall, winning ${districtsWon} out of ${totalDistricts} districts (${((districtsWon/totalDistricts)*100).toFixed(1)}%) with a ${overallWinPercentage}% vote share. The map shows the ranging district-level performance, with a darker green indicating districts where the candidate won a higher percentage of the voter share. 
 
@@ -179,6 +177,7 @@ The candidate performed strongly overall, winning ${districtsWon} out of ${total
 **Districts Won:** ${districtsWon} out of ${totalDistricts} |
 **Total Votes:** ${candidateVotes.toLocaleString()} votes
 
+</div>
 
 ```js
 const surveyByDistrict = d3.rollup(
@@ -317,8 +316,6 @@ Plot.plot({
   <p><em>Which policies resonate most in each community?</em></p>
 </div>
 
-<div class="chart-container">
-
 ```js
 Plot.plot({
   width: 1000,
@@ -362,3 +359,10 @@ Support Level: ${d.topScore.toFixed(2)}/5.0`
     Each colored dot represents the highest-rated policy issue for that district.
   
   *Key Finding*: Different communities prioritize different issues. Understanding these local preferences is crucial for targeted messaging in future campaigns.
+
+<div class="paragraph">
+  <h1>LAB 3: Mayoral Mystery | Most Likely to Succeed Edition</h1>
+  <div class="yearbook-subheader">
+    by Madison Watkins
+  </div>
+</div>
