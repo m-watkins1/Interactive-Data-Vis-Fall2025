@@ -145,7 +145,7 @@ ${d.heavy_metals_ppb > 30 ? "⚠️ VIOLATION" : d.heavy_metals_ppb > 20 ? "⚠ 
 ```
 
 <div class="warning-box">
-  <strong>🚨 CRITICAL FINDING:</strong> 
+  <strong>FINDINGS:</strong> 
   West station shows catastrophic heavy metal contamination, consistently exceeding both the concern threshold (20 ppb) and regulatory limit (30 ppb). Peak contamination reached ${maxHeavyMetals.toFixed(0)} ppb—more than <strong>${(maxHeavyMetals/30).toFixed(1)}x the legal limit</strong>. Meanwhile, other stations remain well within safe parameters, indicating a localized point-source pollutant.
 </div>
 
@@ -202,12 +202,7 @@ Avg Weight: ${d.avg_weight_g}g`
 ```
 
 <div class="evidence-box">
-  <strong>🔍 BIOLOGICAL EVIDENCE:</strong> Trout populations at West station (high pollution sensitivity) 
-  crashed by <strong>${troutDecline}%</strong> from 2023 to 2024. This species-specific mortality at a single 
-  location is the ecological smoking gun. Meanwhile, trout populations at North, South, and East stations 
-  remained stable, proving the contamination is localized to the West station area. Bass (medium sensitivity) 
-  showed moderate decline, while carp (low sensitivity) remained relatively stable—exactly matching the 
-  toxicological profile of heavy metal poisoning.
+  <strong>BIOLOGICAL EVIDENCE:</strong> Trout populations at West station (high pollution sensitivity) crashed by <strong>${troutDecline}%</strong> from 2023 to 2024. This species-specific mortality at a single location is the ecological smoking gun. Meanwhile, trout populations at North, South, and East stations remained stable, proving the contamination is localized to the West station area. Bass (medium sensitivity) showed moderate decline, while carp (low sensitivity) remained relatively stable—exactly matching the toxicological profile of heavy metal poisoning.
 </div>
 
 ---
@@ -331,12 +326,86 @@ Plot.plot({
 })
 ```
 <div class="evidence-box">
-  <strong>📍 SPATIAL PATTERN:</strong> West station sits just <strong>800 meters</strong> from ChemTech 
-  Manufacturing—the closest suspect to the most contaminated location. ChemTech is positioned where water 
-  enters the lake, explaining why contamination is highest at West and gradually decreases with distance. 
-  The spatial correlation is unmistakable.
+  <strong>SPATIAL PATTERN 📍:</strong> West station sits just <strong>800 meters</strong> from ChemTech Manufacturing—the closest suspect to the most contaminated location. ChemTech is positioned where water enters the lake, explaining why contamination is highest at West and gradually decreases with distance. The spatial correlation is unmistakable.
 </div>
 
 ---
+
+
+## Timeline: *Temporal Evidence*
+
+```js
+const chemtechActivities = activities.filter(d => d.suspect === "ChemTech Manufacturing");
+const westHeavyMetalsChart = westData.map(d => ({
+  date: d.date,
+  value: d.heavy_metals_ppb,
+  type: "Heavy Metals"
+}));
+const activityMarkers = chemtechActivities.map(d => ({
+  date: d.date,
+  value: 75,
+  type: "ChemTech Activity",
+  activity: d.activity_type
+}));
+```
+<div class="chart-title">ChemTech Maintenance Events vs. Pollution Spikes</div>
+
+```js
+Plot.plot({
+  width: 1100,
+  height: 450,
+  marginLeft: 60,
+  style: {
+    background: "rgba(0, 30, 50, 0.5)",
+    color: "#e0f2f7"
+  },
+  x: {
+    label: "Date",
+    grid: true,
+    tickFormat: d3.timeFormat("%b %Y")
+  },
+  y: {
+    label: "Heavy Metals (ppb)",
+    grid: true,
+    domain: [0, 80]
+  },
+  marks: [
+    Plot.line(westHeavyMetalsChart, {
+      x: "date",
+      y: "value",
+      stroke: "#ff4757",
+      strokeWidth: 3
+    }),
+    Plot.dot(westHeavyMetalsChart, {
+      x: "date",
+      y: "value",
+      fill: "#ff4757",
+      r: 4
+    }),
+    Plot.dot(activityMarkers, {
+      x: "date",
+      y: "value",
+      fill: "#ffa502",
+      r: 12,
+      symbol: "triangle",
+      title: d => `ChemTech: ${d.activity}
+Date: ${d3.timeFormat("%B %d, %Y")(d.date)}`
+    }),
+    Plot.text(activityMarkers, {
+      x: "date",
+      y: d => d.value + 3,
+      text: ["⚠️"],
+      fontSize: 16
+    })
+  ]
+})
+```
+ <div class="evidence-box">
+  <strong>TIMELINE MATCH:</strong> ChemTech's quarterly maintenance shutdowns (requiring temporary process changes) align <strong>precisely</strong> with major pollution spikes at West station. Every significant contamination event corresponds to a ChemTech maintenance period. This temporal correlation, combined with spatial and biological evidence, creates an airtight case.
+</div>
+
+---
+
+
 
 
