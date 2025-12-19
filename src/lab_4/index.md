@@ -276,4 +276,67 @@ Plot.plot({
 
 ---
 
+## Distance: *Geographic Evidence*
+
+```js
+const proximityData = stations.flatMap(station => [
+  { station: station.station_name, suspect: "ChemTech", distance: station.distance_to_chemtech_m },
+  { station: station.station_name, suspect: "Riverside Farm", distance: station.distance_to_farm_m },
+  { station: station.station_name, suspect: "Lakeview Resort", distance: station.distance_to_resort_m },
+  { station: station.station_name, suspect: "Fishing Lodge", distance: station.distance_to_lodge_m }
+]);
+```
+
+<div class="chart-title">Proximity Analysis: Suspects vs. Monitoring Stations</div>
+
+```js
+Plot.plot({
+  width: 1100,
+  height: 450,
+  marginLeft: 150,
+  style: {
+    background: "rgba(0, 30, 50, 0.5)",
+    color: "#e0f2f7"
+  },
+  x: {
+    label: "Distance (meters)",
+    grid: true
+  },
+  y: {
+    label: "Station",
+    padding: 0.2
+  },
+  color: {
+    domain: ["ChemTech", "Riverside Farm", "Lakeview Resort", "Fishing Lodge"],
+    range: ["#ff4757", "#2ed573", "#5ddbff", "#ffa502"],
+    legend: true
+  },
+  marks: [
+    Plot.barX(proximityData, {
+      x: "distance",
+      y: "station",
+      fill: "suspect",
+      title: d => `${d.suspect} → ${d.station}: ${d.distance}m`
+    }),
+    Plot.ruleX([800], {
+      stroke: "#ff4757",
+      strokeWidth: 2,
+      strokeDasharray: "4,4"
+    })
+  ],
+  facet: {
+    data: proximityData,
+    y: "station"
+  }
+})
+```
+<div class="evidence-box">
+  <strong>📍 SPATIAL PATTERN:</strong> West station sits just <strong>800 meters</strong> from ChemTech 
+  Manufacturing—the closest suspect to the most contaminated location. ChemTech is positioned where water 
+  enters the lake, explaining why contamination is highest at West and gradually decreases with distance. 
+  The spatial correlation is unmistakable.
+</div>
+
+---
+
 
