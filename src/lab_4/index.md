@@ -3,6 +3,243 @@ title: "Lab 4: Clearwater Crisis"
 toc: false
 ---
 
+<style>
+  body {
+    background: linear-gradient(180deg, #001a33 0%, #003d5c 50%, #004d73 100%);
+    color: #e0f2f7;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 10px;
+    position: relative;
+    min-height: 100vh;
+  }
+
+  /* Aquarium bubbles */
+  @keyframes rise {
+    0% {
+      bottom: -100px;
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(100px);
+    }
+    100% {
+      bottom: 110vh;
+      transform: translateX(-50px);
+    }
+  }
+
+  body::before,
+  body::after {
+    content: '';
+    position: fixed;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+    opacity: 0.4;
+    animation: rise 15s infinite ease-in;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  body::before {
+    width: 40px;
+    height: 40px;
+    left: 20%;
+    animation-delay: 0s;
+  }
+
+  body::after {
+    width: 30px;
+    height: 30px;
+    left: 70%;
+    animation-delay: 3s;
+  }
+  
+  .aquarium-header {
+    background: linear-gradient(135deg, rgba(0, 77, 115, 0.9), rgba(0, 51, 102, 0.9));
+    color: #5ddbff;
+    padding: 35px;
+    text-align: center;
+    border: 4px solid rgba(100, 200, 255, 0.4);
+    border-radius: 20px;
+    margin: 20px auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(93, 219, 255, 0.1);
+    position: relative;
+    z-index: 1;
+  }
+  
+  .aquarium-header h1 {
+    font-size: 2.9em;
+    text-align: center;
+    margin-top: 15px;
+    text-shadow: 0 0 20px rgba(0, 200, 255, 0.6), 3px 3px 10px rgba(0, 0, 0, 0.8);
+    font-weight: bold;
+  }
+  
+  .aquarium-subheader {
+    font-size: 1.5em;
+    font-style: italic;
+    margin-top: 15px;
+    color: #8dd9f5;
+    text-shadow: 0 0 10px rgba(141, 217, 245, 0.5);
+  }
+
+  .section-box {
+    background: linear-gradient(135deg, rgba(0, 61, 92, 0.85), rgba(0, 41, 66, 0.85));
+    color: #e0f2f7;
+    padding: 30px;
+    border: 2px solid rgba(93, 219, 255, 0.3);
+    border-radius: 15px;
+    margin: 25px auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-box h2 {
+    color: #5ddbff;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(0, 200, 255, 0.4);
+  }
+
+  .section-box h3 {
+    color: #8dd9f5;
+    font-size: 1.5em;
+    margin-top: 25px;
+    margin-bottom: 15px;
+  }
+
+  .evidence-box {
+    background: rgba(93, 219, 255, 0.15);
+    border-left: 4px solid #5ddbff;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .warning-box {
+    background: rgba(255, 71, 87, 0.25);
+    border-left: 4px solid #ff4757;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .suspect-card {
+    background: linear-gradient(135deg, rgba(20, 60, 90, 0.9), rgba(10, 40, 70, 0.9));
+    border-left: 5px solid #5ddbff;
+    padding: 25px;
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  }
+
+  .suspect-card.guilty {
+    background: linear-gradient(135deg, rgba(100, 20, 30, 0.9), rgba(70, 10, 20, 0.9));
+    border-left: 5px solid #ff4757;
+  }
+
+  .suspect-card h3 {
+    color: #5ddbff;
+    margin-top: 0;
+  }
+
+  .suspect-card.guilty h3 {
+    color: #ff4757;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin: 25px 0;
+  }
+
+  .stat-card {
+    background: rgba(93, 219, 255, 0.12);
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    border: 2px solid rgba(93, 219, 255, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+
+  .stat-value {
+    font-size: 2.8em;
+    font-weight: bold;
+    color: #5ddbff;
+    text-shadow: 0 0 15px rgba(93, 219, 255, 0.6);
+  }
+
+  .stat-value.danger {
+    color: #ff4757;
+    text-shadow: 0 0 15px rgba(255, 71, 87, 0.6);
+  }
+
+  .stat-label {
+    font-size: 1em;
+    color: #8dd9f5;
+    margin-top: 12px;
+    line-height: 1.4;
+  }
+
+  .conclusion-box {
+    background: linear-gradient(135deg, rgba(255, 71, 87, 0.3), rgba(200, 30, 50, 0.3));
+    border: 3px solid #ff4757;
+    border-radius: 15px;
+    padding: 40px;
+    margin: 40px auto;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+  }
+
+  .conclusion-box h2 {
+    color: #ff4757;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-shadow: 0 0 20px rgba(255, 71, 87, 0.5);
+  }
+
+  ul {
+    line-height: 1.9;
+    margin-left: 20px;
+  }
+
+  li {
+    margin: 8px 0;
+  }
+
+  strong {
+    color: #5ddbff;
+  }
+
+  .chart-title {
+    text-align: center;
+    font-size: 1.1em;
+    color: #8dd9f5;
+    font-style: italic;
+    margin-bottom: 15px;
+  }
+</style>
+
+<div class="aquarium-header">
+<h1> 🐟🐟🐟 The Clearwater Crisis 🐟🐟🐟 </h1>
+  <div class="aquarium-subheader">
+    An Ecological Detective Story: Who Killed Lake Clearwater?
+  </div>
+</div>
+
+<div class="section-box">
+  <h2> Summary </h2>
+  <p style="font-size: 1.15em; line-height: 1.9;">
+    Lake Clearwater was once a pristine recreational haven with thriving fish populations and crystal-clear waters. But over the past two years, something went terribly wrong. Fish populations crashed, sensitive species vanished, 
+    and water quality plummeted. Through forensic analysis of water chemistry, biological surveys, and suspect activities, this investigation uncovers the truth behind the ecological catastrophe.
+  </p>
+</div>
+
 <!-- Import Data -->
 ```js
 const waterQuality = await FileAttachment("data/water_quality.csv").csv({ typed: true });
@@ -40,7 +277,7 @@ const distanceToChemtech = westStation?.distance_to_chemtech_m || 800;
 ```
 
 <div class="section-box">
-  <h2>Crucial Stats</h2>
+  <h2>Important Statistics</h2>
   <div class="stats-grid">
     <div class="stat-card">
       <div class="stat-value danger">${maxHeavyMetals.toFixed(0)}</div>
@@ -59,6 +296,70 @@ const distanceToChemtech = westStation?.distance_to_chemtech_m || 800;
       <div class="stat-label">Regulatory Violations<br/>At West Station</div>
     </div>
   </div>
+</div>
+
+---
+
+## Multi-Pollutant Analysis: *Isolating the Culprit*
+<div class="chart-title">Water Quality Parameters at West Station (The Contamination Epicenter)</div>
+
+```js
+Plot.plot({
+  width: 1100,
+  height: 450,
+  marginLeft: 60,
+  marginRight: 100,
+  style: {
+    background: "rgba(0, 30, 50, 0.5)",
+    color: "#e0f2f7"
+  },
+  x: {
+    label: "Date",
+    grid: true,
+    tickFormat: d3.timeFormat("%b %Y")
+  },
+  y: {
+    label: "Measurement Value",
+    grid: true
+  },
+  color: {
+    domain: ["Heavy Metals (ppb)", "Nitrogen (mg/L × 10)", "Phosphorus (mg/L × 100)"],
+    range: ["#ff4757", "#5ddbff", "#2ed573"],
+    legend: true
+  },
+  marks: [
+    Plot.line(westData, {
+      x: "date",
+      y: "heavy_metals_ppb",
+      stroke: "Heavy Metals (ppb)",
+      strokeWidth: 3
+    }),
+    Plot.line(westData, {
+      x: "date",
+      y: d => d.nitrogen_mg_per_L * 10,
+      stroke: "Nitrogen (mg/L × 10)",
+      strokeWidth: 2,
+      strokeDasharray: "4,4"
+    }),
+    Plot.line(westData, {
+      x: "date",
+      y: d => d.phosphorus_mg_per_L * 100,
+      stroke: "Phosphorus (mg/L × 100)",
+      strokeWidth: 2,
+      strokeDasharray: "2,2"
+    }),
+    Plot.dot(westData, {
+      x: "date",
+      y: "heavy_metals_ppb",
+      fill: "#ff4757",
+      r: 4
+    })
+  ]
+})
+```
+
+<div class="evidence-box">
+  <strong>💡KEY INSIGHTS:</strong> While nitrogen and phosphorus show seasonal fluctuations typical of agricultural runoff (spring and fall fertilizer application), heavy metal contamination follows a completely different pattern—with dramatic spikes independent of agricultural cycles. This chemical signature rules out Riverside Farm and points definitively to an industrial source.
 </div>
 
 ---
@@ -207,70 +508,6 @@ Avg Weight: ${d.avg_weight_g}g`
 
 ---
 
-## Multi-Pollutant Analysis: *Isolating the Culprit*
-<div class="chart-title">Water Quality Parameters at West Station (The Contamination Epicenter)</div>
-
-```js
-Plot.plot({
-  width: 1100,
-  height: 450,
-  marginLeft: 60,
-  marginRight: 100,
-  style: {
-    background: "rgba(0, 30, 50, 0.5)",
-    color: "#e0f2f7"
-  },
-  x: {
-    label: "Date",
-    grid: true,
-    tickFormat: d3.timeFormat("%b %Y")
-  },
-  y: {
-    label: "Measurement Value",
-    grid: true
-  },
-  color: {
-    domain: ["Heavy Metals (ppb)", "Nitrogen (mg/L × 10)", "Phosphorus (mg/L × 100)"],
-    range: ["#ff4757", "#5ddbff", "#2ed573"],
-    legend: true
-  },
-  marks: [
-    Plot.line(westData, {
-      x: "date",
-      y: "heavy_metals_ppb",
-      stroke: "Heavy Metals (ppb)",
-      strokeWidth: 3
-    }),
-    Plot.line(westData, {
-      x: "date",
-      y: d => d.nitrogen_mg_per_L * 10,
-      stroke: "Nitrogen (mg/L × 10)",
-      strokeWidth: 2,
-      strokeDasharray: "4,4"
-    }),
-    Plot.line(westData, {
-      x: "date",
-      y: d => d.phosphorus_mg_per_L * 100,
-      stroke: "Phosphorus (mg/L × 100)",
-      strokeWidth: 2,
-      strokeDasharray: "2,2"
-    }),
-    Plot.dot(westData, {
-      x: "date",
-      y: "heavy_metals_ppb",
-      fill: "#ff4757",
-      r: 4
-    })
-  ]
-})
-```
-
-<div class="evidence-box">
-  <strong>💡KEY INSIGHTS:</strong> While nitrogen and phosphorus show seasonal fluctuations typical of agricultural runoff (spring and fall fertilizer application), heavy metal contamination follows a completely different pattern—with dramatic spikes independent of agricultural cycles. This chemical signature rules out Riverside Farm and points definitively to an industrial source.
-</div>
-
----
-
 ## Distance: *Geographic Evidence*
 
 ```js
@@ -405,6 +642,92 @@ Date: ${d3.timeFormat("%B %d, %Y")(d.date)}`
 </div>
 
 ---
+
+<div class="section-box">
+  <h2>Suspect Analysis 🔍: The Four Defendants</h2>
+</div>
+
+<div class="suspect-card guilty">
+  <h3>ChemTech Manufacturing 🏭 — GUILTY</h3>
+  <p><strong>Location:</strong> Western shore, 800m from West station (where water enters lake)</p>
+  <p><strong>Permit Limit:</strong> 2.5 kg heavy metals/day | 30 ppb maximum concentration</p>
+  
+  <h4 style="color: #ff4757; margin-top: 20px;">Evidence Against:</h4>
+  <ul>
+    <li><strong>Spatial:</strong> Closest to most contaminated station (800m to West)</li>
+    <li><strong>Temporal:</strong> Maintenance shutdowns perfectly align with pollution spikes in Mar, Jun, Sep, Dec 2024</li>
+    <li><strong>Chemical:</strong> Heavy metals reached ${maxHeavyMetals.toFixed(0)} ppb (${((maxHeavyMetals/30 - 1) * 100).toFixed(0)}% over legal limit)</li>
+    <li><strong>Biological:</strong> ${troutDecline}% trout mortality matches expected death rates at 60+ ppb contamination</li>
+    <li><strong>Pattern:</strong> Contamination isolated to West station, consistent with point-source industrial discharge</li>
+    <li><strong>Violations:</strong> ${violationCount} documented exceedances of 30 ppb regulatory limit</li>
+  </ul>
+  
+  <p style="margin-top: 20px; font-size: 1.1em; color: #ff4757;">
+    <strong>Verdict:</strong> All three lines of evidence (spatial, temporal, biological) converge on ChemTech. 
+    The contamination pattern, species-specific mortality, and activity timeline create an irrefutable case.
+  </p>
+</div>
+
+<div class="suspect-card">
+  <h3> Riverside Farm 🌾 — CLEARED</h3>
+  <p><strong>Location:</strong> Northern shore, 600m from North station</p>
+  <p><strong>Operations:</strong> 500-acre corn and soybean operation with spring/fall fertilizer application</p>
+  
+  <h4 style="color: #8dd9f5; margin-top: 20px;">Evidence For Innocence:</h4>
+  <ul>
+    <li>North station shows <strong>no elevated heavy metals</strong> (8-12 ppb, well within limits)</li>
+    <li>Fish populations at North station remain healthy and stable</li>
+    <li>Nitrogen/phosphorus show seasonal patterns at <strong>all stations</strong>, not just North—typical of watershed-wide agricultural runoff</li>
+    <li>Agricultural operations cannot produce heavy metal contamination</li>
+    <li>Fertilizer application timing (Apr-May, Sep) doesn't match heavy metal spike patterns</li>
+  </ul>
+  
+  <p style="margin-top: 15px; color: #8dd9f5;">
+    <strong>Conclusion:</strong> Agricultural runoff contributes to baseline nutrient levels but cannot explain 
+    the heavy metal contamination or species-specific fish mortality at West station.
+  </p>
+</div>
+
+<div class="suspect-card">
+  <h3> Lakeview Resort 🏨 — CLEARED</h3>
+  <p><strong>Location:</strong> Eastern shore, 700m from East station</p>
+  <p><strong>Permit Limit:</strong> 0.3 kg heavy metals/day (12x smaller than ChemTech)</p>
+  
+  <h4 style="color: #8dd9f5; margin-top: 20px;">Evidence For Innocence:</h4>
+  <ul>
+    <li>East station shows <strong>low heavy metal levels</strong> (10-15 ppb), consistently below 30 ppb limit</li>
+    <li>Fish populations at East station remain stable across all species</li>
+    <li>Discharge permit (0.3 kg/day) is insufficient to cause observed contamination levels</li>
+    <li>Resort expansion in 2023-2024 shows no correlation with pollution events</li>
+    <li>No temporal match between resort activities and contamination spikes</li>
+  </ul>
+  
+  <p style="margin-top: 15px; color: #8dd9f5;">
+    <strong>Conclusion:</strong> The Resort's wastewater treatment operates within permitted levels. 
+    East station data shows no evidence of harmful contamination.
+  </p>
+</div>
+
+<div class="suspect-card">
+  <h3> Clearwater Fishing Lodge 🎣 — CLEARED</h3>
+  <p><strong>Location:</strong> Southern shore, 800m from South station</p>
+  <p><strong>Opening Date:</strong> January 2023 (timing appears suspicious initially)</p>
+  
+  <h4 style="color: #8dd9f5; margin-top: 20px;">Evidence For Innocence:</h4>
+  <ul>
+    <li>South station shows <strong>minimal heavy metals</strong> (8-12 ppb), well within safe parameters</li>
+    <li>Fish populations at South station remain healthy—despite being nearest to the Lodge</li>
+    <li>Fishing activity (removing fish) cannot cause heavy metal pollution</li>
+    <li>Septic systems do not release heavy metals</li>
+    <li>Boat traffic and dock construction produce turbidity, not chemical contamination</li>
+    <li>No scientific mechanism for Lodge operations to produce observed pollution</li>
+  </ul>
+  
+  <p style="margin-top: 15px; color: #8dd9f5;">
+    <strong>Conclusion:</strong> The Lodge's operations cannot produce the observed chemical contamination. 
+    South station data shows no evidence of harmful pollution near their facility.
+  </p>
+</div>
 
 
 
