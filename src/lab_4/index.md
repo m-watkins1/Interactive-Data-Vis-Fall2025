@@ -55,25 +55,25 @@ toc: false
   }
   
   .aquarium-header {
-    background: linear-gradient(135deg, rgba(0, 77, 115, 0.9), rgba(0, 51, 102, 0.9));
-    color: #5ddbff;
-    padding: 35px;
-    text-align: center;
-    border: 4px solid rgba(100, 200, 255, 0.4);
-    border-radius: 20px;
-    margin: 20px auto;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(93, 219, 255, 0.1);
-    position: relative;
-    z-index: 1;
-  }
+  background: linear-gradient(135deg, rgba(0, 77, 115, 0.9), rgba(0, 51, 102, 0.9));
+  color: #5ddbff;
+  padding: 40px 35px 35px 35px;  /* Add more padding to top instead */
+  text-align: center;
+  border: 4px solid rgba(100, 200, 255, 0.4);
+  border-radius: 20px;
+  margin: 20px auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(93, 219, 255, 0.1);
+  position: relative;
+  z-index: 1;
+}
   
   .aquarium-header h1 {
-    font-size: 2.9em;
-    text-align: center;
-    margin-top: 15px;
-    text-shadow: 0 0 20px rgba(0, 200, 255, 0.6), 3px 3px 10px rgba(0, 0, 0, 0.8);
-    font-weight: bold;
-  }
+  font-size: 2.9em;
+  text-align: center;
+  margin: 0;  /* Change this from margin-top: 15px to margin: 0 */
+  text-shadow: 0 0 20px rgba(0, 200, 255, 0.6), 3px 3px 10px rgba(0, 0, 0, 0.8);
+  font-weight: bold;
+}
   
   .aquarium-subheader {
     font-size: 1.5em;
@@ -364,15 +364,16 @@ Plot.plot({
 
 ---
 
-## Heavy Metal Contamination | *Clearwater's Smoking Gun*
+## Heavy Metal Contamination 
+### *Clearwater's Smoking Gun*
 <div class="chart-title">Weekly Heavy Metal Concentrations Across All Stations (2023-2024)</div>
 
 ```js
 Plot.plot({
   width: 1100,
-  height: 500,
+  height: 600,
   marginLeft: 60,
-  marginRight: 60,
+  marginRight: 20,
   style: {
     background: "rgba(0, 30, 50, 0.5)",
     color: "#e0f2f7"
@@ -387,60 +388,65 @@ Plot.plot({
     grid: true,
     domain: [0, 80]
   },
+  fy: {
+    label: null,
+    padding: 0.1
+  },
   color: {
     domain: ["North", "South", "East", "West"],
     range: ["#2ed573", "#ffa502", "#5ddbff", "#ff4757"],
     legend: true
   },
+  facet: {
+    data: waterQuality,
+    y: "station_id",
+    label: null
+  },
   marks: [
-    // Regulatory limit line
+    // Regulatory limit
     Plot.ruleY([30], {
       stroke: "#ff4757",
-      strokeWidth: 3,
-      strokeDasharray: "8,4"
+      strokeWidth: 2,
+      strokeDasharray: "4,2",
+      strokeOpacity: 0.5
     }),
-    Plot.text([{x: new Date("2024-06-01"), y: 31}], {
-      x: "x",
-      y: "y",
-      text: ["← Regulatory Limit (30 ppb)"],
-      fill: "#ff4757",
-      fontSize: 13,
-      textAnchor: "start"
-    }),
-    
-    // Concern threshold line
+    // Concern threshold
     Plot.ruleY([20], {
       stroke: "#ffa502",
-      strokeWidth: 2,
-      strokeDasharray: "4,4"
+      strokeWidth: 1,
+      strokeDasharray: "2,2",
+      strokeOpacity: 0.5
     }),
-    Plot.text([{x: new Date("2024-06-01"), y: 21}], {
-      x: "x",
-      y: "y",
-      text: ["← Concern Threshold (20 ppb)"],
-      fill: "#ffa502",
-      fontSize: 13,
-      textAnchor: "start"
-    }),
-    
-    // Station data
+    // Data 
     Plot.line(waterQuality, {
       x: "date",
       y: "heavy_metals_ppb",
       stroke: "station_id",
-      strokeWidth: 3,
+      strokeWidth: 2.5,
       curve: "catmull-rom"
     }),
     Plot.dot(waterQuality, {
       x: "date",
       y: "heavy_metals_ppb",
       fill: "station_id",
-      r: 4,
+      r: 3,
       title: d => `${d.station_name}
 Date: ${d3.timeFormat("%B %d, %Y")(d.date)}
 Heavy Metals: ${d.heavy_metals_ppb.toFixed(1)} ppb
-${d.heavy_metals_ppb > 30 ? "⚠️ VIOLATION" : d.heavy_metals_ppb > 20 ? "⚠ Concern Level" : "✓ Within Limits"}`
-    })
+${d.heavy_metals_ppb > 30 ? "⚠️ VIOLATION ⚠️" : d.heavy_metals_ppb > 20 ? "⚠ Concern Level" : "✓ Within Limits"}`
+    }),
+    // Station labels
+    Plot.text(waterQuality, 
+      Plot.selectFirst({
+        x: new Date("2023-02-01"),
+        y: 75,
+        text: "station_id",
+        fill: "station_id",
+        fontSize: 14,
+        fontWeight: "bold",
+        textAnchor: "start"
+      })
+    )
   ]
 })
 ```
