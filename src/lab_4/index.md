@@ -57,7 +57,8 @@ toc: false
   .aquarium-header {
   background: linear-gradient(135deg, rgba(0, 77, 115, 0.9), rgba(0, 51, 102, 0.9));
   color: #5ddbff;
-  padding: 40px 35px 35px 35px;  /* Add more padding to top instead */
+  padding: 40px 35px 35px 35px;
+  font-size: 2.9em;
   text-align: center;
   border: 4px solid rgba(100, 200, 255, 0.4);
   border-radius: 20px;
@@ -69,8 +70,7 @@ toc: false
   
   .aquarium-header h1 {
   font-size: 2.9em;
-  text-align: center;
-  margin: 0;  /* Change this from margin-top: 15px to margin: 0 */
+  margin: 0; 
   text-shadow: 0 0 20px rgba(0, 200, 255, 0.6), 3px 3px 10px rgba(0, 0, 0, 0.8);
   font-weight: bold;
 }
@@ -78,6 +78,7 @@ toc: false
   .aquarium-subheader {
     font-size: 1.5em;
     font-style: italic;
+    text-align: center;
     margin-top: 15px;
     color: #8dd9f5;
     text-shadow: 0 0 10px rgba(141, 217, 245, 0.5);
@@ -226,7 +227,9 @@ toc: false
 </style>
 
 <div class="aquarium-header">
-<h1> 𓆝 𓆟 𓆞 The Clearwater Crisis 𓆝 𓆟 𓆞 </h1>
+𓆝 𓆟 𓆞 The Clearwater Crisis 𓆝 𓆟 𓆞
+</div>
+
   <div class="aquarium-subheader">
     An Ecological Detective Story: Who Killed Lake Clearwater?
   </div>
@@ -250,7 +253,6 @@ const activities = await FileAttachment("data/suspect_activities.csv").csv({ typ
 const westData = waterQuality.filter(d => d.station_id === "West");
 const maxHeavyMetals = d3.max(westData, d => d.heavy_metals_ppb);
 
-// Use Date object methods instead of string methods
 const westTrout2023 = fishSurveys.find(d => 
   d.station_id === "West" && 
   d.species === "Trout" && 
