@@ -226,18 +226,15 @@ toc: false
 </style>
 
 <div class="aquarium-header">
-<h1> 🐟🐟🐟 The Clearwater Crisis 🐟🐟🐟 </h1>
+<h1> 𓆝 𓆟 𓆞 The Clearwater Crisis 𓆝 𓆟 𓆞 </h1>
   <div class="aquarium-subheader">
     An Ecological Detective Story: Who Killed Lake Clearwater?
   </div>
 </div>
 
 <div class="section-box">
-  <h2> Summary </h2>
-  <p style="font-size: 1.15em; line-height: 1.9;">
-    Lake Clearwater was once a pristine recreational haven with thriving fish populations and crystal-clear waters. But over the past two years, something went terribly wrong. Fish populations crashed, sensitive species vanished, 
-    and water quality plummeted. Through forensic analysis of water chemistry, biological surveys, and suspect activities, this investigation uncovers the truth behind the ecological catastrophe.
-  </p>
+<h2> Summary of What Happened! </h2>
+  <div class="chart-title">"Lake Clearwater was once a thriving recreational lake with healthy fish populations and clear waters. However, over the past two years, something has gone terribly wrong. Fish populations have crashed, particularly among sensitive species like trout. Water quality has degraded in certain areas of the lake."</div>
 </div>
 
 <!-- Import Data -->
@@ -359,13 +356,12 @@ Plot.plot({
 ```
 
 <div class="evidence-box">
-  <strong>💡KEY INSIGHTS:</strong> While nitrogen and phosphorus show seasonal fluctuations typical of agricultural runoff (spring and fall fertilizer application), heavy metal contamination follows a completely different pattern—with dramatic spikes independent of agricultural cycles. This chemical signature rules out Riverside Farm and points definitively to an industrial source.
+  <strong>KEY INSIGHTS💡:</strong> While nitrogen and phosphorus show seasonal fluctuations typical of agricultural runoff (spring and fall fertilizer application), heavy metal contamination follows a completely different pattern, with dramatic spikes independent of agricultural cycles. This chemical signature rules out Riverside Farm and points definitively to an industrial source.
 </div>
 
 ---
 
-## Heavy Metal Contamination 
-### *Clearwater's Smoking Gun*
+## Heavy Metal Contamination
 <div class="chart-title">Weekly Heavy Metal Concentrations Across All Stations (2023-2024)</div>
 
 ```js
@@ -458,7 +454,7 @@ ${d.heavy_metals_ppb > 30 ? "⚠️ VIOLATION ⚠️" : d.heavy_metals_ppb > 20 
 
 ---
 
-##  Ecological Devastation | *Fish Population Collapse*
+##  Ecological Devastation: *Fish Population Collapse*
 <div class="chart-title">Fish Population Trends by Species and Station (Quarterly Surveys)</div>
 
 ```js
@@ -509,7 +505,7 @@ Avg Weight: ${d.avg_weight_g}g`
 ```
 
 <div class="evidence-box">
-  <strong>BIOLOGICAL EVIDENCE:</strong> Trout populations at West station (high pollution sensitivity) crashed by <strong>${troutDecline}%</strong> from 2023 to 2024. This species-specific mortality at a single location is the ecological smoking gun. Meanwhile, trout populations at North, South, and East stations remained stable, proving the contamination is localized to the West station area. Bass (medium sensitivity) showed moderate decline, while carp (low sensitivity) remained relatively stable—exactly matching the toxicological profile of heavy metal poisoning.
+  <strong>BIOLOGICAL EVIDENCE:</strong> Trout populations at West station (high pollution sensitivity) crashed by <strong>${troutDecline}%</strong> from 2023 to 2024. This species-specific mortality at a single location is the ecological smoking gun. Meanwhile, trout populations at North, South, and East stations remained stable, proving the contamination is localized to the West station area. Bass (medium sensitivity) showed moderate decline, while carp (low sensitivity) remained relatively stable, exactly matching the toxicological profile of heavy metal poisoning.
 </div>
 
 ---
@@ -569,7 +565,7 @@ Plot.plot({
 })
 ```
 <div class="evidence-box">
-  <strong>SPATIAL PATTERN 📍:</strong> West station sits just <strong>800 meters</strong> from ChemTech Manufacturing—the closest suspect to the most contaminated location. ChemTech is positioned where water enters the lake, explaining why contamination is highest at West and gradually decreases with distance. The spatial correlation is unmistakable.
+  <strong>SPATIAL PATTERN:</strong> West station sits just <strong>800 meters</strong> from ChemTech Manufacturing, the closest suspect to the most contaminated location. ChemTech is positioned where water enters the lake, explaining why contamination is highest at West and gradually decreases with distance. The spatial correlation is unmistakable.
 </div>
 
 ---
@@ -722,7 +718,7 @@ Date: ${d3.timeFormat("%B %d, %Y")(d.date)}`
   <h4 style="color: #8dd9f5; margin-top: 20px;">Evidence For Innocence:</h4>
   <ul>
     <li>South station shows <strong>minimal heavy metals</strong> (8-12 ppb), well within safe parameters</li>
-    <li>Fish populations at South station remain healthy—despite being nearest to the Lodge</li>
+    <li>Fish populations at South station remain healthy, despite being nearest to the Lodge</li>
     <li>Fishing activity (removing fish) cannot cause heavy metal pollution</li>
     <li>Septic systems do not release heavy metals</li>
     <li>Boat traffic and dock construction produce turbidity, not chemical contamination</li>
